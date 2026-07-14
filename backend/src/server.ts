@@ -873,11 +873,28 @@ app.get("/api/dashboard", async (req, res) => {
 
     const numRecipes = await prisma.recipe.count();
 
+    const lowStockItems = await prisma.rawIngredient.findMany({
+        where: {
+            currentWeightKg: {
+                lt: 1
+            }
+        },
+        select: {
+            id: true,
+            name: true,
+            currentWeightKg: true,
+        },
+        orderBy: {
+            currentWeightKg: "asc",
+        },
+    });
+
     res.json({
         availableServings: totalServings,
         finishedProducts,
         lowStockIngredients,
-        numRecipes
+        numRecipes,
+        lowStockItems
     });
 });
 
