@@ -6,8 +6,15 @@ type LowStockTableProps = {
 }
 
 function LowStockTable({lowStockItems}: LowStockTableProps) {
-    if (lowStockItems.length === 0) { <Typography>All ingredients are sufficiently stocked.</Typography>
-        return 
+    if (lowStockItems.length === 0) {
+        return ( 
+            <>
+                <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+                Low Stock Ingredients
+                </Typography>
+                <Typography>All ingredients are sufficiently stocked.</Typography>
+            </>
+        )
     }
         
     return (

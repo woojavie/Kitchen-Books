@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { DashboardMetrics } from "../types/dashboardMetrics";
 import { Stack, Typography, Alert, Card, CardContent } from "@mui/material";
 import LowStockTable from "./LowStockTable";
+import RecentImportTable from "./RecentImportsTable";
 
 
 function DashboardSection() {
@@ -95,6 +96,7 @@ function DashboardSection() {
                 </Stack>
               
                 <LowStockTable lowStockItems={metrics.lowStockItems}/>
+                <RecentImportTable recentImports={metrics.recentImports} />
               </Stack>
             )}
         </Stack>

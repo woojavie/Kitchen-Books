@@ -889,12 +889,31 @@ app.get("/api/dashboard", async (req, res) => {
         },
     });
 
+    const recentImports = await prisma.salesImport.findMany({
+        take: 10,
+        orderBy: {
+            importedAt: "desc",
+        },
+        select: {
+            id: true,
+            importedAt: true,
+            posProductName: true,
+            quantitySold: true,
+            recipe: {
+                select : {
+                    name: true
+                }
+            }
+        },
+    });
+
     res.json({
         availableServings: totalServings,
         finishedProducts,
         lowStockIngredients,
         numRecipes,
-        lowStockItems
+        lowStockItems,
+        recentImports,
     });
 });
 
